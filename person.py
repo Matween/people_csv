@@ -11,7 +11,7 @@ class Person:
         return f'{self.name} {self.last_name}, {str(self.birthday)}'
 
     def csv(self):
-        return f'{self.name};{self.last_name};{str(self.birthday)};'
+        return f'{self.name},{self.last_name},{str(self.birthday)}'
 
     def get_name(self):
         return self.name

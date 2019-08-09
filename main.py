@@ -80,8 +80,8 @@ def add_person(new_person, filename='people.csv', method='a+'):
     """
 
     with open(filename, method) as current:
-        if read_first_line().rstrip() != 'name;last_name;birthday;':
-            current.write('name;last_name;birthday;\n')
+        if read_first_line().rstrip() != 'name,last_name,birthday':
+            current.write('name,last_name,birthday\n')
         current.write(new_person.csv() + '\n')
 
 
@@ -103,9 +103,9 @@ def list_all_people(filename='people.csv', method='r', by='default'):
     with open(filename, method) as current:
         current.seek(0)
         for line in current:
-            if line.rstrip() == 'name;last_name;birthday;':
+            if line.rstrip() == 'name,last_name,birthday':
                 continue
-            props = line.split(';')
+            props = line.split(',')
             date = props[2].split('.')
             people.append(Person(props[0], props[1], Date(int(date[0]), int(date[1]), int(date[2]))))
     if by == 'first_name':
