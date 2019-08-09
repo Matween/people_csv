@@ -3,6 +3,14 @@ from person import Person
 
 
 def create_person():
+    """
+    Creates a person object
+
+    Returns:
+    Person: Person instance
+
+    """
+
     name = ''
     last_name = ''
     while not name:
@@ -16,6 +24,14 @@ def create_person():
 
 
 def create_date():
+    """
+    Creates a date object
+
+    Returns:
+    Date: Date instance
+
+    """
+
     date = None
     day = 0
     month = 0
@@ -31,6 +47,18 @@ def create_date():
 
 
 def read_first_line(filename='people.csv', method='r'):
+    """
+    Reads the file and returns the first line.
+
+    Parameters:
+    arg1 (string): The name of the file to open
+    arg2 (string): Method to use when opening file
+
+    Returns:
+    string: First line of the file
+
+    """
+
     with open(filename, method) as current:
         current.seek(0)
         if len(current.read(1)) == 0:
@@ -41,6 +69,16 @@ def read_first_line(filename='people.csv', method='r'):
 
 
 def add_person(new_person, filename='people.csv', method='a+'):
+    """
+    Opens the file and appends new person to it.
+
+    Parameters:
+    arg1 (Person): Person object to add to the file
+    arg2 (string): The name of the file to open
+    arg3 (string): Method to use when opening file
+
+    """
+
     with open(filename, method) as current:
         if read_first_line().rstrip() != 'name;last_name;birthday;':
             current.write('name;last_name;birthday;\n')
@@ -48,6 +86,19 @@ def add_person(new_person, filename='people.csv', method='a+'):
 
 
 def list_all_people(filename='people.csv', method='r', by='default'):
+    """
+    Reads the file and adds each line to the list as a Person object.
+
+    Parameters:
+    arg1 (string): The name of the file to open
+    arg2 (string): Method to use when opening file
+    arg2 (string): Sort criteria
+
+    Returns:
+    list: List of objects found in the csv file
+
+    """
+
     people = list()
     with open(filename, method) as current:
         current.seek(0)
@@ -65,6 +116,14 @@ def list_all_people(filename='people.csv', method='r', by='default'):
 
 
 def print_people(people):
+    """
+    Iterates through the list and prints each object.
+
+    Parameters:
+    arg1 (list): List consisting of Person objects
+
+    """
+
     print('\n')
     if not people:
         print('There are currently no people. Please add a person first.\n')
@@ -77,6 +136,22 @@ def print_people(people):
 
 
 def search(people, value, field):
+    """
+    Looks for people with certain value for their field.
+
+    If field is name, it checks the name attribute
+    in each object and compares it to the provided value.
+
+    Parameters:
+    arg1 (list): List of people
+    arg2 (string): Value to look for
+    arg2 (string): Field to check its value
+
+    Returns:
+    filter: Returns filtered results
+
+    """
+
     if field == 'birthday':
         return filter(lambda x: getattr(x, field).year == int(value), people)
 
@@ -133,6 +208,3 @@ if __name__ == '__main__':
             break
         else:
             print('Wrong option. Try again.')
-
-
-
