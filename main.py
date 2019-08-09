@@ -55,11 +55,10 @@ def list_all_people(filename='people.csv', method='r', by='default'):
                 continue
             props = line.split(';')
             people.append(Person(props[0], props[1], props[2]))
-    if by != 'default':
-        if by == 'first_name':
-            people.sort(key=lambda x: x.name)
-        elif by == 'last_name':
-            people.sort(key=lambda x: x.last_name)
+    if by == 'first_name':
+        people.sort(key=lambda x: x.name)
+    elif by == 'last_name':
+        people.sort(key=lambda x: x.last_name)
     return people
 
 
